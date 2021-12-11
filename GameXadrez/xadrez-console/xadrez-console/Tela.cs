@@ -6,7 +6,7 @@ namespace xadrez_console
 {
     class Tela
     {
-     
+
         public static void imprimirPartida(PartidaDeXadrez partida)
         {
             imprimirTabuleiro(partida.tab);
@@ -15,11 +15,21 @@ namespace xadrez_console
 
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
-            Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
 
-            if (partida.xeque)
+            if (!partida.terminada)
             {
-                Console.WriteLine("XEQUE!");
+
+                Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
+
+                if (partida.xeque)
+                {
+                    Console.WriteLine("XEQUE!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("XEQUE-MATE");
+                Console.WriteLine("Vencedor: " + partida.jogadorAtual);
             }
         }
 
@@ -41,7 +51,7 @@ namespace xadrez_console
         public static void imprimirConjunto(HashSet<Peca> conjunto)
         {
             Console.Write("[");
-            foreach(Peca x in conjunto)
+            foreach (Peca x in conjunto)
             {
                 Console.Write(x + " ");
             }
@@ -64,7 +74,7 @@ namespace xadrez_console
 
         }
 
-        public static void imprimirTabuleiro(Tabuleiro tab, bool[,]posicoesPossiveis)
+        public static void imprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis)
         {
 
             ConsoleColor fundoOriginal = Console.BackgroundColor;
@@ -106,7 +116,7 @@ namespace xadrez_console
 
         public static void imprimirPeca(Peca peca)
         {
-            if(peca == null)
+            if (peca == null)
             {
                 Console.Write("- ");
             }
@@ -123,7 +133,7 @@ namespace xadrez_console
                     Console.Write(peca);
                     Console.ForegroundColor = aux;
                 }
-                
+
                 Console.Write(" ");
             }
         }
